@@ -1,6 +1,7 @@
 package com.companhia.entities;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -8,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 public class EntidadeDominio {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long Id;
 
 	public long getId() {

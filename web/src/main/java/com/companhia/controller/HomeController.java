@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.companhia.command.AbstractCommand;
 import com.companhia.command.AlterarCommand;
 import com.companhia.command.ConsultarCommand;
 import com.companhia.command.DeletarCommand;
 import com.companhia.command.SalvarCommand;
 import com.companhia.command.VisualizarCommand;
+import com.companhia.entities.Cliente;
 
 @Controller
 public class HomeController {
@@ -46,8 +49,9 @@ public class HomeController {
 	}
 	
 	@PostMapping("/processar")
+	@ResponseBody
 	public String processar() {
 		
-		return "";
+		return "ok";
 	}
 }

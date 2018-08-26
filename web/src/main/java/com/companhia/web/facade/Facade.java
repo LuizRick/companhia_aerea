@@ -8,6 +8,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
+
+import com.companhia.entities.Aeroporto;
+import com.companhia.entities.Cliente;
 import com.companhia.entities.EntidadeDominio;
 import com.companhia.entities.Usuario;
 import com.companhia.rns.IStrategy;
@@ -20,14 +23,17 @@ public class Facade implements IFacade {
 	private Map<String, Map<String, List<IStrategy>>> rns;
 	private Map<String, JpaRepository<?, Long>> repositories;
 
-	@Autowired
-	private UsuarioRepository repo;
+	@Autowired private UsuarioRepository usuarioRepo;
+	@Autowired private AeroportoRepository aeroportoRepo;
+	@Autowired private ClienteRepository clienteRepo;
 	
 	@PostConstruct
 	public void init() {
 		repositories = new HashMap<>();
 		rns = new HashMap<>();
-		repositories.put(Usuario.class.getName(), repo);
+		repositories.put(Usuario.class.getName(), usuarioRepo);
+		repositories.put(Aeroporto.class.getName(),aeroportoRepo);
+		repositories.put(Cliente.class.getName(), clienteRepo);
 	}
 
 	@Override
