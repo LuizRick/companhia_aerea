@@ -1,8 +1,8 @@
 package com.companhia.entities;
 
 import java.time.LocalDate;
+
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Cliente extends EntidadeDominio{
