@@ -17,7 +17,7 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
             
-                <link rel="stylesheet" type="text/css" href="css/style.css">
+                <link rel="stylesheet" type="text/css" href="../resources/css/estilo.css">
 
         </head>
         <body>
@@ -271,6 +271,29 @@ function habilitaBotao(habilita){
 $("#senha").focusin(function(){
    $("#avisoSenha").addClass("hide"); 
 });
+    
+$("#senhaRepetida").focusin(function(){
+   $("#avisoSenha").addClass("hide"); 
+});
+    
+    
+$("#senhaRepetida").focusout(function(){
+    debugger;
+    if(verifica()){
+        if(validaSenhasIguais()){
+            $("#avisoSenha").addClass("hide");
+            habilitaBotao(true);
+        }else{
+            $("#avisoSenha").text("A senha deve ser igual nos 2 campos abaixo");
+            $("#avisoSenha").removeClass("hide");
+            habilitaBotao(false);
+        }  
+    }else{
+        $("#avisoSenha").text("A senha deve possuir 6 ou mais digitos, uma letra maiuscula e um caractere especial");
+        $("#avisoSenha").removeClass("hide");
+    }
+   
+});        
     
 $("#senha").focusout(function(){
     debugger;

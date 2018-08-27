@@ -1,4 +1,3 @@
-@charset "ISO-8859-1";
 .margem-baixo-5 {margin-bottom: 5px !important;}
 .margem-baixo-10{margin-bottom: 10px !important;}
 .margem-baixo-15{margin-bottom: 15px !important;}
@@ -46,6 +45,10 @@
 .input-largura-400{width: 400px}
 .input-largura-500{width: 500px}
 
+
+.texto-vermelho{
+    color: red;
+}
 
 
 .inline{display: inline}
