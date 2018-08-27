@@ -13,7 +13,6 @@
                     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
                     crossorigin="anonymous"></script>
             
-                <script type="text/javascript" src="js/script.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
             
@@ -56,7 +55,7 @@
               <!--Menu de navegação -->
             
             <div id="formulario-cadastro" class="container"  >
-                <form>
+                <form action="javascript:void(0)" id="form-cliente">
                    <div class="form-group margem-cima-20 row"> 
                        <b>Dados Pessoais</b>
                     </div>
@@ -66,7 +65,7 @@
                             <input type="text" class="input-largura-500 form-control margem-esquerda-20"  id="txt-nome" placeholder="Nome Completo">
                         
                             <label for="telefone" class="inline margem-cima-5 margem-esquerda-20">*Data de nascimento:</label>
-                            <input type="text" class="form-control input-largura-130 margem-esquerda-20" id="txt-telefone" placeholder="DD/MM/AAAA">
+                            <input type="text" class="form-control input-largura-130 margem-esquerda-20" id="txt-nascimento" placeholder="DD/MM/AAAA">
                   </div>
                     
                     <div class="form-group margem-cima-20 row">          
@@ -74,7 +73,7 @@
                             <input type="text" class="input-largura-150 form-control margem-esquerda-20"  id="rg" >
                         
                             <label for="telefone" class="inline margem-cima-5 margem-esquerda-20">*CPF:</label>
-                            <input type="text" class="form-control input-largura-150 margem-esquerda-20" id="txt-telefone" >
+                            <input type="text" class="form-control input-largura-150 margem-esquerda-20" id="txt-cpf" >
                   </div>
                
                   <div class="form-group margem-cima-20 row">
@@ -128,7 +127,7 @@
                     
                     <div class="form-group margem-cima-30 row">
                         <label for="email" class="margem-cima-5 ">*Email:</label>
-                         <input type="text" id="input-estado" class="form-control input-largura-300 margem-esquerda-20"/>
+                         <input type="text" id="input-email" class="form-control input-largura-300 margem-esquerda-20"/>
                         
                     </div>
                    
@@ -145,7 +144,7 @@
                     
                 
                  
-                  <button id="submit" onclick="submitDados();" class="btn btn-primary">Cadastrar</button>
+                  <button id="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
             </div>
             
@@ -339,5 +338,25 @@ montaPais();
     
     
     
-    
+    $("#form-cliente").on('submit', function(){
+    	var obj = {
+    			action:"SALVAR",
+    			entidade:{
+    				"nome":$("#txt-nome").val(),
+        			"rg" : $("#rg").val(),
+        			"cpf": $("cpf").val()
+    			}
+    	};
+    	
+    	$.ajax({
+    		url:"/clientes/processar",
+    		method:"POST",
+    		contentType : 'application/json; charset=utf-8',
+    		data: JSON.stringify(obj),
+    		async:false,
+    		success:function(){
+    			console.log(arguments);
+    		}
+    	});
+    })
 </script>
