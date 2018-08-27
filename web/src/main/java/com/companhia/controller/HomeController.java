@@ -2,7 +2,9 @@ package com.companhia.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,6 @@ import com.companhia.command.ConsultarCommand;
 import com.companhia.command.DeletarCommand;
 import com.companhia.command.SalvarCommand;
 import com.companhia.command.VisualizarCommand;
-import com.companhia.entities.Cliente;
 
 @Controller
 public class HomeController {

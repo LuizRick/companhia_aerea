@@ -1,4 +1,3 @@
-
 <html>
       
         <head>
@@ -30,16 +29,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">Cadastrar Cliente</a>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">Cadastrar Aeroporto</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#">Link</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Cadastrar Cliente</a>
+              <a class="dropdown-item" href="#">Cadastrar Aeroporto</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
@@ -51,36 +50,25 @@
         
       </div>
     </nav>
-              <!--Menu de navegação -->
-            
-            <div id="formulario-cadastro" class="container"  >
+    <!--Menu de navegação -->
+        
+         <div id="formulario-cadastro" class="container"  >
                 <form>
                    <div class="form-group margem-cima-20 row"> 
-                       <b>Dados Pessoais</b>
+                       <b>Dados do Aeroporto</b>
                     </div>
                     
                   <div class="form-group margem-cima-20 row">          
-                            <label for="exampleInputEmail1" class="inline margem-cima-5" >*Nome:</label>
+                            <label for="exampleInputEmail1" class="inline margem-cima-5" >*Nome Do Aeroporto:</label>
                             <input type="text" class="input-largura-500 form-control margem-esquerda-20"  id="txt-nome" placeholder="Nome Completo">
                         
-                            <label for="telefone" class="inline margem-cima-5 margem-esquerda-20">*Data de nascimento:</label>
-                            <input type="text" class="form-control input-largura-130 margem-esquerda-20" id="txt-telefone" placeholder="DD/MM/AAAA">
                   </div>
                     
-                    <div class="form-group margem-cima-20 row">          
-                            <label for="rg" class="inline margem-cima-5" >*RG:</label>
-                            <input type="text" class="input-largura-150 form-control margem-esquerda-20"  id="rg" >
-                        
-                            <label for="telefone" class="inline margem-cima-5 margem-esquerda-20">*CPF:</label>
-                            <input type="text" class="form-control input-largura-150 margem-esquerda-20" id="txt-telefone" >
-                  </div>
-               
+                    
                   <div class="form-group margem-cima-20 row">
-                    <label for="telefone" class="margem-cima-5">Telefone:</label>
+                    <label for="telefone" class="margem-cima-5">*Telefone:</label>
                     <input type="text" class="form-control input-largura-130 margem-esquerda-10" maxlength="14" id="txt-telefone" placeholder="(xx) 9999-9999">
                       
-                    <label for="celular" class="margem-cima-5 margem-esquerda-20">*Celular:</label>
-                    <input type="text" class="form-control input-largura-150 margem-esquerda-5" maxlength="15" id="txt-celular" placeholder="(xx) 99999-9999">  
                   </div>
                     
                     <div class="form-group margem-cima-20 row">
@@ -118,43 +106,25 @@
                          <input id="input-cidade" type="text" class="form-control input-largura-250 margem-esquerda-20 hide"/>
                         <select id="cidade"  class="form-control input-largura-180 margem-esquerda-20"></select>
                         
-                    </div>
-                    
-                     <div class="form-group margem-cima-20 row">
-                         <b>Informações de login</b>
-                    </div>
-                    
-                    <div class="form-group margem-cima-30 row">
-                        <label for="email" class="margem-cima-5 ">*Email:</label>
-                         <input type="text" id="input-estado" class="form-control input-largura-300 margem-esquerda-20"/>
-                        
-                    </div>
-                   
-                     <label id="avisoSenha" class="texto-vermelho margem-cima-20 hide">A senha deve possuir 6 ou mais digitos, uma letra maiuscula e um caractere especial</label>
-
-                    <div class="form-group margem-cima-20 row">
-                        <label for="senha">*Senha:</label>
-                         <input type="password" id="senha" class="form-control input-largura-300 margem-esquerda-20"/>
-                        
-                        <label for="senhaRepetida" class="margem-cima-5 margem-esquerda-20">*Repita a senha:</label>
-                         <input type="password" id="senhaRepetida" class="form-control input-largura-300 margem-esquerda-20"/>
-                        
-                    </div>
-                    
-                
-                 
-                  <button id="submit" onclick="submitDados();" class="btn btn-primary">Cadastrar</button>
+                    </div>   
+            
+                    <button id="submit" onclick="submitDados();" class="btn btn-primary">Cadastrar</button>
                 </form>
             </div>
             
-         
-  
-        </body>
+            
+            
+            
+            
+            
+    </body>
+    
     </html>
+
 
 <script>
 
-  function montaCidade(estado, pais){
+     function montaCidade(estado, pais){
 	$.ajax({
 		type:'GET',
 		url:'http://api.londrinaweb.com.br/PUC/Cidades/'+estado+'/'+pais+'/0/10000',
@@ -258,84 +228,7 @@ function montaPais(){
 	});
 }
     
-function habilitaBotao(habilita){
-    if(habilita){
-        
-    }else{
-        
-    }
-}    
+    
+    montaPais();
 
-$("#senha").focusin(function(){
-   $("#avisoSenha").addClass("hide"); 
-});
-    
-$("#senhaRepetida").focusin(function(){
-   $("#avisoSenha").addClass("hide"); 
-});
-    
-    
-$("#senhaRepetida").focusout(function(){
-    debugger;
-    if(verifica()){
-        if(validaSenhasIguais()){
-            $("#avisoSenha").addClass("hide");
-            habilitaBotao(true);
-        }else{
-            $("#avisoSenha").text("A senha deve ser igual nos 2 campos abaixo");
-            $("#avisoSenha").removeClass("hide");
-            habilitaBotao(false);
-        }  
-    }else{
-        $("#avisoSenha").text("A senha deve possuir 6 ou mais digitos, uma letra maiuscula e um caractere especial");
-        $("#avisoSenha").removeClass("hide");
-    }
-   
-});        
-    
-$("#senha").focusout(function(){
-    debugger;
-    if(verifica()){
-        if(validaSenhasIguais()){
-            $("#avisoSenha").addClass("hide");
-            habilitaBotao(true);
-        }else{
-            $("#avisoSenha").text("A senha deve ser igual nos 2 campos abaixo");
-            $("#avisoSenha").removeClass("hide");
-            habilitaBotao(false);
-        }  
-    }else{
-        $("#avisoSenha").text("A senha deve possuir 6 ou mais digitos, uma letra maiuscula e um caractere especial");
-        $("#avisoSenha").removeClass("hide");
-    }
-   
-});    
-    
-function validaSenhasIguais(){
-    var senha = $("#senha").val();
-    var senhaRepetida = $("#senhaRepetida").val();
-    
-    if(senha == senhaRepetida){
-        return true;
-    }
-        return false;
-}
-    
-    
-    
-function verifica(){
-    debugger;
-	var senha = document.getElementById("senha").value;
-	var regex = /^(?=(?:.*?[A-Z]){1})(?=(?:.*?[!@#$%*()_+^&}{:;?.]){1})(?!.*\s)[0-9a-zA-Z!@#$%;*(){}_+^&]*$/;
-	if(senha.length >= 6 && regex.exec(senha)){
-        return true;    
-    }
-    return false;
-}    
-    
-montaPais();
-    
-    
-    
-    
 </script>
