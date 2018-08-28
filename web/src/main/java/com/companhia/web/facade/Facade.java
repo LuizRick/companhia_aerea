@@ -50,6 +50,9 @@ public class Facade implements IFacade {
 			}
 		} else {
 			resultado.setMsg(msg);
+			List<EntidadeDominio> entidades = new ArrayList<>();
+			entidades.add(entidade);
+			resultado.setEntidades(entidades);
 		}
 		return resultado;
 	}
@@ -90,6 +93,7 @@ public class Facade implements IFacade {
 		return resultado;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Resultado consultar(EntidadeDominio entidade) {
 		resultado = new Resultado();
@@ -97,7 +101,7 @@ public class Facade implements IFacade {
 		String msg = executaRegras(entidade, "CONSULTAR");
 		if (msg == null) {
 			try {
-				resultado.setEntidades(noCast(repositories.get(nmClass).findAll()));
+				resultado.setEntidades((List<EntidadeDominio>) repositories.get(nmClass).findAll());
 			}catch(Exception ex) {
 				ex.printStackTrace();
 				resultado.setMsg("Não foi possivel salvar os dados");

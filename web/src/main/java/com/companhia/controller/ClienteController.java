@@ -50,10 +50,16 @@ public class ClienteController {
 		return "/clientes/cadastro";
 	}
 	
+	@GetMapping("/consultar")
+	public String consultar() {
+		return "/clientes/consultar";
+	}
+	
 	@PostMapping("/processar")
 	@ResponseBody
-	public String processar(String action, Cliente entidade) throws Exception {
+	public String processar(@RequestParam("action") String action, @RequestParam("cliente") String entidade) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(commands.get(action).execute(entidade));
+		Cliente cliente = (Cliente) mapper.readValue(entidade, Cliente.class);
+		return mapper.writeValueAsString(commands.get(action).execute(cliente));
 	}
 }

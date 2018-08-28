@@ -1,20 +1,36 @@
 package com.companhia.entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Cliente extends EntidadeDominio{
 
 	public String nome;
-	public String endereco;
+
 	public String telefone;
-	public LocalDate nascimento;
+	@DateTimeFormat(pattern="dd-MM-yyyy")
+	public Date nascimento;
 	public String cpf;
 	public String rg;
 	public String email;
 	public String senha;
+	public String celular;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	@MapsId
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	public Endereco endereco;
 
 	public String getNome() {
 		return nome;
@@ -24,14 +40,7 @@ public class Cliente extends EntidadeDominio{
 		this.nome = nome;
 	}
 
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
+	
 	public String getTelefone() {
 		return telefone;
 	}
@@ -40,11 +49,11 @@ public class Cliente extends EntidadeDominio{
 		this.telefone = telefone;
 	}
 
-	public LocalDate getNascimento() {
+	public Date getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(LocalDate nascimento) {
+	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
 
@@ -78,6 +87,22 @@ public class Cliente extends EntidadeDominio{
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 }

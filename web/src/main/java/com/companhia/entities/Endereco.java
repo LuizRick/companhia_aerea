@@ -1,5 +1,8 @@
 package com.companhia.entities;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Endereco extends EntidadeDominio {
 
 	private String logradouro;
