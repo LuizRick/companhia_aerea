@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 <script src="../resources/js/cliente.js"></script>
 </head>
 <body>

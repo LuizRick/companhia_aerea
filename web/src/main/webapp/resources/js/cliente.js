@@ -238,15 +238,11 @@ $(function () {
     
     
     
-    function sendProcess(obj, callback){
+    function sendProcess(obj, onsucess, onfail){
     	 $.ajax({
              url: "/clientes/processar",
              method: "POST",
              data: obj,
-             async: false,
-             success: function (response) {
-                 callback(response);
-             }
-         });
+         }).done(onsucess).fail(onfail);
     }
 });

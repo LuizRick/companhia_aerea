@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
+import com.companhia.dao.ClienteDAO;
+import com.companhia.dao.IDAO;
 import com.companhia.entities.Aeroporto;
 import com.companhia.entities.Cliente;
 import com.companhia.entities.EntidadeDominio;
@@ -21,19 +23,19 @@ public class Facade implements IFacade {
 	private Resultado resultado;
 
 	private Map<String, Map<String, List<IStrategy>>> rns;
-	private Map<String, JpaRepository<?, Long>> repositories;
+	private Map<String, IDAO> repositories;
 
 	@Autowired private UsuarioRepository usuarioRepo;
 	@Autowired private AeroportoRepository aeroportoRepo;
-	@Autowired private ClienteRepository clienteRepo;
+	@Autowired private ClienteDAO clienteDAO;
 	
 	@PostConstruct
 	public void init() {
 		repositories = new HashMap<>();
 		rns = new HashMap<>();
-		repositories.put(Usuario.class.getName(), usuarioRepo);
-		repositories.put(Aeroporto.class.getName(),aeroportoRepo);
-		repositories.put(Cliente.class.getName(), clienteRepo);
+		//repositories.put(Usuario.class.getName(), usuarioRepo);
+		//repositories.put(Aeroporto.class.getName(),aeroportoRepo);
+		repositories.put(Cliente.class.getName(), clienteDAO);
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class Facade implements IFacade {
 		String msg = executaRegras(entidade, "SALVAR");
 		if (msg == null) {
 			try {
-				repositories.get(nmClass).save(noCast(entidade));
+				repositories.get(nmClass).salvar(entidade);
 			}catch(Exception ex) {
 				ex.printStackTrace();
 				resultado.setMsg("Não foi possivel salvar os dados");
@@ -64,7 +66,7 @@ public class Facade implements IFacade {
 		String msg = executaRegras(entidade, "ALTERAR");
 		if (msg == null) {
 			try {
-				repositories.get(nmClass).save(noCast(entidade));
+				repositories.get(nmClass).alterar(entidade);
 			}catch(Exception ex) {
 				ex.printStackTrace();
 				resultado.setMsg("Não foi possivel salvar os dados");
@@ -82,7 +84,7 @@ public class Facade implements IFacade {
 		String msg = executaRegras(entidade, "EXCLUIR");
 		if (msg == null) {
 			try {
-				repositories.get(nmClass).delete(noCast(entidade));
+				repositories.get(nmClass).deletar(entidade);
 			}catch(Exception ex) {
 				ex.printStackTrace();
 				resultado.setMsg("Não foi possivel salvar os dados");
@@ -101,7 +103,7 @@ public class Facade implements IFacade {
 		String msg = executaRegras(entidade, "CONSULTAR");
 		if (msg == null) {
 			try {
-				resultado.setEntidades((List<EntidadeDominio>) repositories.get(nmClass).findAll());
+				resultado.setEntidades(repositories.get(nmClass).consultar(entidade));
 			}catch(Exception ex) {
 				ex.printStackTrace();
 				resultado.setMsg("Não foi possivel salvar os dados");
@@ -143,8 +145,5 @@ public class Facade implements IFacade {
 			return null;
 	}
 
-	@SuppressWarnings("unchecked")
-	private <T> T noCast(Object object) {
-		return (T) object;
-	}
+	
 }
