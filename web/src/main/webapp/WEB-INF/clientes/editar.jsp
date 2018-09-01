@@ -96,17 +96,18 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="senha">*Senha</label>
-                                <input type="text" id="senha" class="form-control" />
+                                <input type="password" id="senha" class="form-control" />
                                 <div class="invalid-feedback" id="avisoSenha">
                                     Please provide a valid city.
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="txt-">*Repita a senha</label>
-                                <input type="text" id="senhaRepetida" class="form-control" />
+                                <input type="password" id="senhaRepetida" class="form-control" />
                             </div>
                         </div>
                         <!--  FIM: login -->
+                        <button class="btn btn-primary" id="editar">Alterar</button>
                     </form>
                 </div>
             </div>
