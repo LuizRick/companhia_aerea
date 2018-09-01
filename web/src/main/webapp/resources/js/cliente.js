@@ -11,8 +11,8 @@ $(function () {
             let clientes = JSON.parse(response).entidades;
             $("#clientes tbody").html("");
             console.log(clientes);
-            if(clientes != null){
-        	clientes.forEach((element, index) => {
+            if (clientes != null) {
+                clientes.forEach((element, index) => {
                     $("#clientes tbody").append(`
                 	       <tr>
                                <td>${element.nome}</td>
@@ -33,17 +33,19 @@ $(function () {
 
 
     $("#clientes").on('click', '.excluir', function () {
-	var id = $(this).attr("data-id");
-	var resp = confirm("deseja realmente apagar este cliente");
-	if(!resp) return;
-	sendProcess({action:"EXCLUIR" , cliente : JSON.stringify({
-	    "id":id
-	})}, function(response){
-	    if(response.msg == null)
-		alert("cliente deletado com sucesso");
-	    
-	    $("#btnConsultar").trigger("click");
-	});
+        var id = $(this).attr("data-id");
+        var resp = confirm("deseja realmente apagar este cliente");
+        if (!resp) return;
+        sendProcess({
+            action: "EXCLUIR", cliente: JSON.stringify({
+                "id": id
+            })
+        }, function (response) {
+            if (response.msg == null)
+                alert("cliente deletado com sucesso");
+
+            $("#btnConsultar").trigger("click");
+        });
     });
 
 
@@ -182,20 +184,20 @@ $(function () {
             function () {
                 if (verifica()) {
                     if (validaSenhasIguais()) {
-                        $("#avisoSenha").addClass("hide");
+                        $("#avisoSenha").show();
                         habilitaBotao(true);
                     } else {
                         $("#avisoSenha")
                             .text(
                                 "A senha deve ser igual nos 2 campos abaixo");
-                        $("#avisoSenha").removeClass("hide");
+                        $("#avisoSenha").hide();
                         habilitaBotao(false);
                     }
                 } else {
                     $("#avisoSenha")
                         .text(
                             "A senha deve possuir 6 ou mais digitos, uma letra maiuscula e um caractere especial");
-                    $("#avisoSenha").removeClass("hide");
+                    $("#avisoSenha").show();
                 }
 
             });
@@ -205,20 +207,20 @@ $(function () {
             function () {
                 if (verifica()) {
                     if (validaSenhasIguais()) {
-                        $("#avisoSenha").addClass("hide");
+                        $("#avisoSenha").show();
                         habilitaBotao(true);
                     } else {
                         $("#avisoSenha")
                             .text(
                                 "A senha deve ser igual nos 2 campos abaixo");
-                        $("#avisoSenha").removeClass("hide");
+                        $("#avisoSenha").hide();
                         habilitaBotao(false);
                     }
                 } else {
                     $("#avisoSenha")
                         .text(
                             "A senha deve possuir 6 ou mais digitos, uma letra maiuscula e um caractere especial");
-                    $("#avisoSenha").removeClass("hide");
+                    $("#avisoSenha").show();
                 }
 
             });

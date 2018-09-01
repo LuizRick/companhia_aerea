@@ -15,5 +15,5 @@
 			crossorigin="anonymous"></script>
 
 <link rel="stylesheet" type="text/css"
-			href="../resources/css/estilo.css">
+			href="/resources/css/estilo.css">
 <meta charset="utf-8" />
