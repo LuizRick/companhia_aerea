@@ -6,17 +6,16 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
+import com.companhia.dao.AeroportoDAO;
 import com.companhia.dao.ClienteDAO;
 import com.companhia.dao.IDAO;
 import com.companhia.entities.Aeroporto;
 import com.companhia.entities.Cliente;
 import com.companhia.entities.EntidadeDominio;
-import com.companhia.entities.Usuario;
 import com.companhia.rns.IStrategy;
-import com.companhia.repository.*;
+import com.companhia.rns.cliente.ValidarCamposObrigatorios;
 
 @Component
 public class Facade implements IFacade {
@@ -25,17 +24,30 @@ public class Facade implements IFacade {
 	private Map<String, Map<String, List<IStrategy>>> rns;
 	private Map<String, IDAO> repositories;
 
-	@Autowired private UsuarioRepository usuarioRepo;
-	@Autowired private AeroportoRepository aeroportoRepo;
+	@Autowired private AeroportoDAO aeroportoDAO;
 	@Autowired private ClienteDAO clienteDAO;
 	
 	@PostConstruct
 	public void init() {
 		repositories = new HashMap<>();
 		rns = new HashMap<>();
-		//repositories.put(Usuario.class.getName(), usuarioRepo);
-		//repositories.put(Aeroporto.class.getName(),aeroportoRepo);
+		
+		
+		
+		//regras para cliente
+		List<IStrategy> rnsSalvarCliente = new ArrayList<>();
+		Map<String, List<IStrategy>> rnsCliente = new HashMap<>();
+		rnsSalvarCliente.add(new ValidarCamposObrigatorios());
+		rnsCliente.put("SALVAR", rnsSalvarCliente);
+		
+		
+		//lista de repositorios
+		repositories.put(Aeroporto.class.getName(),aeroportoDAO);
 		repositories.put(Cliente.class.getName(), clienteDAO);
+		
+		
+		//TODAS AS REGRAS DE NOGOCIO DA APLICAÇÃO
+		rns.put(Cliente.class.getName(), rnsCliente);
 	}
 
 	@Override
@@ -95,7 +107,6 @@ public class Facade implements IFacade {
 		return resultado;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public Resultado consultar(EntidadeDominio entidade) {
 		resultado = new Resultado();

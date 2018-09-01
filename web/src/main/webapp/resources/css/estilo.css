@@ -53,3 +53,13 @@
 
 .inline{display: inline}
 .hide{display:none}
+
+form{
+	padding:5px;
+	margin:5px
+}
+
+
+table thead{
+	text-transform:uppercase;
+}

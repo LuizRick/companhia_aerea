@@ -55,6 +55,11 @@ public class ClienteController {
 		return "/clientes/consultar";
 	}
 	
+	@GetMapping("/editar")
+	public String editar() {
+		return "/clientes/editar";
+	}
+	
 	@PostMapping("/processar")
 	@ResponseBody
 	public String processar(@RequestParam("action") String action, @RequestParam("cliente") String entidade) throws Exception {

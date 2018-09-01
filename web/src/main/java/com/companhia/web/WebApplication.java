@@ -11,7 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EntityScan("com.companhia.entities")
 @EnableJpaRepositories({"com.companhia.repository"})
-@ComponentScan({"com.companhia.web.facade" , "com.companhia.controller" , "com.companhia.repository" , "com.companhia.command" , "com.companhia.dao"})
+@ComponentScan({"com.companhia.web.facade" , "com.companhia.controller" , "com.companhia.repository" , "com.companhia.command" ,
+	"com.companhia.dao" , "com.companhia.helpers"})
 public class WebApplication {
 
 	

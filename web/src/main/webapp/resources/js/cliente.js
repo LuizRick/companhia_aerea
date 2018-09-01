@@ -1,10 +1,52 @@
 $(function () {
-	$("#btnConsultar").on("click", function(){
-		sendProcess({"action":"CONSULTAR" , "cliente" : JSON.stringify({})} , function(response){
-			console.dir(JSON.parse(response));
-		});
+    $("#btnConsultar").on("click", function () {
+        let cliente = {
+            nome: $("#txt-nome").val(),
+            email: $("#txt-email").val(),
+            cpf: $("#txt-cpf").val(),
+            rg: $("#txt-rg").val()
+        };
+
+        sendProcess({ "action": "CONSULTAR", "cliente": JSON.stringify(cliente) }, function (response) {
+            let clientes = JSON.parse(response).entidades;
+            $("#clientes tbody").html("");
+            console.log(clientes);
+            if(clientes != null){
+        	clientes.forEach((element, index) => {
+                    $("#clientes tbody").append(`
+                	       <tr>
+                               <td>${element.nome}</td>
+                               <td>${element.telefone}</td>
+                               <td>${new Date(element.nascimento).toLocaleDateString()}</td>
+                               <td>${element.cpf}</td>
+                               <td>${element.rg}</td>
+                               <td>${element.email}</td>
+                               <td>${element.celular}</td>
+                               <td><a class="btn btn-secondary" href="/clientes/editar/${element.id}">editar</a>
+                               <button class="btn btn-danger excluir" data-id="${element.id}">excluir</button></td>
+                	       </tr>
+                       `);
+                });
+            }
+        });
+    });
+
+
+    $("#clientes").on('click', '.excluir', function () {
+	var id = $(this).attr("data-id");
+	var resp = confirm("deseja realmente apagar este cliente");
+	if(!resp) return;
+	sendProcess({action:"EXCLUIR" , cliente : JSON.stringify({
+	    "id":id
+	})}, function(response){
+	    if(response.msg == null)
+		alert("cliente deletado com sucesso");
+	    
+	    $("#btnConsultar").trigger("click");
 	});
-	
+    });
+
+
     function montaCidade(estado, pais) {
         $.ajax(
             {
@@ -225,9 +267,9 @@ $(function () {
                 }
             })
         };
-        
-        sendProcess(obj,function(response){
-        	let obj = JSON.parse(response);
+
+        sendProcess(obj, function (response) {
+            let obj = JSON.parse(response);
             if (obj.msg == null) {
                 alert("Clinte salvo com sucesso");
             } else {
@@ -235,14 +277,14 @@ $(function () {
             }
         });
     });
-    
-    
-    
-    function sendProcess(obj, onsucess, onfail){
-    	 $.ajax({
-             url: "/clientes/processar",
-             method: "POST",
-             data: obj,
-         }).done(onsucess).fail(onfail);
+
+
+
+    function sendProcess(obj, onsucess, onfail) {
+        $.ajax({
+            url: "/clientes/processar",
+            method: "POST",
+            data: obj,
+        }).done(onsucess).fail(onfail);
     }
 });

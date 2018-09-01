@@ -16,21 +16,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Cliente extends EntidadeDominio{
 
-	public String nome;
-
-	public String telefone;
+	private String nome;
+	private String telefone;
 	@DateTimeFormat(pattern="dd-MM-yyyy")
-	public Date nascimento;
-	public String cpf;
-	public String rg;
-	public String email;
-	public String senha;
-	public String celular;
+	private Date nascimento;
+	private String cpf;
+	private String rg;
+	private String email;
+	private String senha;
+	private String celular;
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@MapsId
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	public Endereco endereco;
+	private Endereco endereco;
 
 	public String getNome() {
 		return nome;
