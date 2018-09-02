@@ -22,6 +22,14 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
+            <li class="nat-item dropdown">
+            	<a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+            		Operador
+            	</a>
+            	<div class="dropdown-menu">
+            		<a class="dropdown-item" href="/voos/gerenciar">Gerenciamento</a>
+            	</div>
+            </li>
         </ul>
 
     </div>
