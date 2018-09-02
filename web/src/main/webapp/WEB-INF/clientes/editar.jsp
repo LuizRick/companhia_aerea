@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-			pageEncoding="ISO-8859-1"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
 
@@ -11,15 +10,15 @@
     </head>
 
     <body>
+        <jsp:include page="../layout/navigation.jsp"></jsp:include>
         <div class="container-fluid">
-            <jsp:include page="../layout/navigation.jsp"></jsp:include>
             <div class="row">
                 <div class="col-lg-12">
                     <form action="javascript:void(0)">
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="txt-nome">*Nome:</label>
-                                <input type="text" id="txt-nome" class="form-control" />
+                                <input type="text" id="txt-nome" class="form-control" value="${cliente.nome}" />
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="txt-nascimento">*Data de Nascimento</label>
@@ -73,15 +72,15 @@
                         <!--  Pais estado cidade -->
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="txt-telefone">*Pais</label>
+                                <label for="pais">*Pais</label>
                                 <select id="pais" class="form-control"></select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="txt-telefone">*Estado</label>
+                                <label for="estado">*Estado</label>
                                 <select id="estado" class="form-control"></select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="txt-telefone">*Cidade</label>
+                                <label for="cidate">*Cidade</label>
                                 <select id="cidade" class="form-control"></select>
                             </div>
                         </div>
@@ -90,7 +89,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="txt-email">*Email</label>
-                                <input type="text" id="txt-telefone" class="form-control" />
+                                <input type="text" id="txt-email" class="form-control" />
                             </div>
                         </div>
                         <div class="form-row">

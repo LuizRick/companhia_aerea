@@ -70,6 +70,8 @@ public class ClienteController {
 		cliente.setId(id);
 		Resultado resultado = commands.get("CONSULTAR").execute(cliente);
 		model.addAttribute("resultado", resultado);
+		if(resultado.getMsg() != null && resultado.getEntidades().size() > 0)
+			model.addAttribute("cliente", resultado.getEntidades().get(0));
 		return "/clientes/editar";
 	}
 
