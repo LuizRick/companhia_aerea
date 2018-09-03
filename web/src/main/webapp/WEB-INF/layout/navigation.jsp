@@ -27,7 +27,9 @@
             		Operador
             	</a>
             	<div class="dropdown-menu">
-            		<a class="dropdown-item" href="/voos/gerenciar">Gerenciamento</a>
+            		<a class="dropdown-item" href="/voos/gerenciar">Gerenciamento de Voo</a>
+            		<a class="dropdown-item" href="/operador/login">Login</a>
+            		<a class="dropdown-item" href="/operador/alfandega">Alfandega</a>
             	</div>
             </li>
         </ul>

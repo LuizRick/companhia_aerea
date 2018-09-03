@@ -12,4 +12,10 @@ public class VoosController {
 	public String gerenciar() {
 		return "/voos/gerenciamento";
 	}
+	
+	
+	@GetMapping("/criar")
+	public String criar() {
+		return "voos/criar";
+	}
 }
