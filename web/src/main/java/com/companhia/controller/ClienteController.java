@@ -63,6 +63,12 @@ public class ClienteController {
 	public String consultar() {
 		return "/clientes/consultar";
 	}
+	
+	
+	@GetMapping("/login")
+	public String login() {
+		return "/clientes/login";
+	}
 
 	@RequestMapping(value = "/editar/{id}", method = RequestMethod.GET)
 	public String editar(@PathVariable Long id, Model model) {
