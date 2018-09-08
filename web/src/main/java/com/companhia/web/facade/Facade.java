@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.companhia.dao.AeroportoDAO;
+import com.companhia.dao.BagagemDAO;
 import com.companhia.dao.ClienteDAO;
 import com.companhia.dao.IDAO;
 import com.companhia.entities.Aeroporto;
+import com.companhia.entities.Bagagem;
 import com.companhia.entities.Cliente;
 import com.companhia.entities.EntidadeDominio;
 import com.companhia.rns.IStrategy;
@@ -26,6 +28,7 @@ public class Facade implements IFacade {
 
 	@Autowired private AeroportoDAO aeroportoDAO;
 	@Autowired private ClienteDAO clienteDAO;
+	@Autowired private BagagemDAO bagagemDAO;
 	
 	@PostConstruct
 	public void init() {
@@ -40,14 +43,20 @@ public class Facade implements IFacade {
 		rnsSalvarCliente.add(new ValidarCamposObrigatorios());
 		rnsCliente.put("SALVAR", rnsSalvarCliente);
 		
+		//regras para bagagem
+		List<IStrategy> rnsSalvarBagagem = new ArrayList<>();
+		Map<String, List<IStrategy>> rnsBagagem = new HashMap<>();
+		rnsBagagem.put("SALVAR", rnsSalvarBagagem);
 		
 		//lista de repositorios
 		repositories.put(Aeroporto.class.getName(),aeroportoDAO);
 		repositories.put(Cliente.class.getName(), clienteDAO);
+		repositories.put(Bagagem.class.getName(), bagagemDAO);
 		
 		
 		//TODAS AS REGRAS DE NOGOCIO DA APLICAÇÃO
 		rns.put(Cliente.class.getName(), rnsCliente);
+		rns.put(Bagagem.class.getName(), rnsBagagem);
 	}
 
 	@Override

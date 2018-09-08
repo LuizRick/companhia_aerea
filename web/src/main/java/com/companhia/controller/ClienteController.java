@@ -30,19 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/clientes")
-public class ClienteController {
-
-	@Autowired
-	private SalvarCommand salvarCmd;
-	@Autowired
-	private AlterarCommand alterarCmd;
-	@Autowired
-	private ConsultarCommand consultarCmd;
-	@Autowired
-	private DeletarCommand deletarCmd;
-	@Autowired
-	private VisualizarCommand visualizarCmd;
-	private Map<String, AbstractCommand> commands;
+public class ClienteController extends BaseController{
 
 	@PostConstruct
 	public void init() {

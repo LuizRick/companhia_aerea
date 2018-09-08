@@ -30,6 +30,7 @@
             		<a class="dropdown-item" href="/voos/gerenciar">Gerenciamento de Voo</a>
             		<a class="dropdown-item" href="/operador/login">Login</a>
             		<a class="dropdown-item" href="/operador/alfandega">Alfandega</a>
+            		<a class="dropdown-item" href="/bagagem/cadastro">Cadastro Bagagem</a>
             	</div>
             </li>
         </ul>

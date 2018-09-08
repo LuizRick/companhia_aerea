@@ -123,6 +123,11 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jQuery-Mask-Plugin</artifactId>
+			<version>1.14.10</version>
+		</dependency>
 	</dependencies>
 
 	<build>
