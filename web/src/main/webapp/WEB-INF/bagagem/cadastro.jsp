@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <button class="btn btn-primary">Salvar</button>
+                        <button class="btn btn-primary" id="btnSalvar">Salvar</button>
                     </form>
                 </div>
             </div>

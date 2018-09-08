@@ -4,6 +4,10 @@ $(function(){
     $("#txt-peso").mask("#0.000" , {reverse:true});
     $("#txt-cpf").mask("999.999.999-95");
     
+    $("#txt-quantidade").on('change', function(){
+	var taxa = parseInt($("#txt-quantidade").val()) * 2.50;
+	$("#txt-taxa").val(taxa);
+    });
     
     $("#frmCadastroBagagem").on('submit', function(){
 	var bagagem = {
