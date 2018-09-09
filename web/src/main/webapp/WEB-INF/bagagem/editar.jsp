@@ -15,17 +15,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="javascript:void(0)" id="frmCadastroBagagem">
+                    <form action="javascript:void(0)" id="frmEditarBagagem">
                     <fieldset>
                     	<legend>Cliente/Voo</legend>
                     	<div class="form-row">
                     		<div class="form-group col-md-6">
                     			<label>CPF:</label>
-                    			<input type="text" id="txt-cpf" class="form-control" required/>
+                    			<input type="text" id="txt-cpf" class="form-control" required value="${bagagem.cliente.cpf }"/>
                     		</div>
                     		<div class="form-group col-md-6">
                     			<label>Numero Voo:</label>
-                    			<input type="text" id="txt-voo" class="form-control" required/>
+                    			<input type="text" id="txt-voo" class="form-control" required value="${bagagem.numeroVoo }"/>
                     		</div>
                     	</div>
                     </fieldset>
@@ -34,15 +34,15 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="txt-altura">*Altura</label>
-                                    <input type="text" id="txt-altura" class="form-control" required="required" />
+                                    <input type="text" id="txt-altura" class="form-control" required="required" value='${bagagem.altura.toString().replace(".",",")}' />
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt-largura">*Largura</label>
-                                    <input type="text" id="txt-largura" class="form-control" required="required" />
+                                    <input type="text" id="txt-largura" class="form-control" required="required" value='${bagagem.largura.toString().replace(".",",") }'/>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txt-comprimento">*Comprimento</label>
-                                    <input type="text" id="txt-comprimento" class="form-control" required="required" />
+                                    <input type="text" id="txt-comprimento" class="form-control" required="required" value='${bagagem.comprimento.toString().replace(".",",") }'/>
                                 </div>
                             </div>
                         </fieldset>
@@ -52,7 +52,7 @@
                                 <div class="col-md-4 mb-3">
                                     <label for="txt-peso">Peso</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="txt-peso" required>
+                                        <input type="text" class="form-control" id="txt-peso" required value='${bagagem.peso.toString().replaceAll("\\.?0*$", "") }'>
                                         <div class="input-group-append">
                                             <span class="input-group-text">KG</span>
                                         </div>
@@ -67,14 +67,14 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                 	<label>*Qtd.</label>
-                                	<input type="number" class="form-control" id="txt-quantidade" required/>
+                                	<input type="number" class="form-control" id="txt-quantidade" required value="${bagagem.quantidade }"/>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="txt-taxa">*Taxa</label>
-                                    <input type="text" id="txt-taxa" class="form-control" disabled="disabled" required="required" />
+                                    <input type="text" id="txt-taxa" class="form-control" disabled="disabled" required="required" value="${bagagem.taxa}"/>
                                 </div>
                             </div>
-                            <input type="hidden" id="hidden-id" value="0"/>
+                            <input type="hidden" value="${bagagem.id }" id="hidden-id"/>
                         </fieldset>
                         <button class="btn btn-primary" id="btnSalvar" type="submit">Salvar</button>
                     </form>

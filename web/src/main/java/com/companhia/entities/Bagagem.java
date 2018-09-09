@@ -17,7 +17,7 @@ public class Bagagem extends EntidadeDominio {
 	private Integer quantidade;
 	private Float peso;
 	private Float taxa;
-	private boolean ativo;
+	private boolean ativo = true;
 	private String numeroVoo;
 
 	@OneToOne

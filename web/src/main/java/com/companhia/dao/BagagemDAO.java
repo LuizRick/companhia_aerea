@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.companhia.entities.Bagagem;
 import com.companhia.entities.EntidadeDominio;
+import com.companhia.helpers.StringHelper;
 import com.companhia.repository.BagagemRepository;
 
 @Component
@@ -38,6 +39,10 @@ public class BagagemDAO extends AbstractDAO {
 		List<Predicate<Bagagem>> allPredicates = new ArrayList<>();
 		if(bagagem.getId() > 0)
 			allPredicates.add(b -> b.getId() == bagagem.getId());
+		if(bagagem.getCliente() != null && !StringHelper.isNullOrEmpty( bagagem.getCliente().getCpf()))
+			allPredicates.add(b -> b.getCliente().getCpf().equals(bagagem.getCliente().getCpf()));
+		if(!StringHelper.isNullOrEmpty(bagagem.getNumeroVoo()))
+			allPredicates.add(b -> b.getNumeroVoo().contains(bagagem.getNumeroVoo()));
 		Predicate<Bagagem> compisitePradicate = allPredicates.stream().reduce(b -> true, Predicate::and);
 		bagagems = bagagems.stream().filter(compisitePradicate).collect(Collectors.toList());
 		return noCast(bagagems);

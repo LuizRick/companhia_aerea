@@ -31,6 +31,7 @@
             		<a class="dropdown-item" href="/operador/login">Login</a>
             		<a class="dropdown-item" href="/operador/alfandega">Alfandega</a>
             		<a class="dropdown-item" href="/bagagem/cadastro">Cadastro Bagagem</a>
+            		<a class="dropdown-item" href="/bagagem/consultar">Consultar Bagagem</a>
             	</div>
             </li>
         </ul>
