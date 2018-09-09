@@ -17,6 +17,7 @@ import com.companhia.entities.Bagagem;
 import com.companhia.entities.Cliente;
 import com.companhia.entities.EntidadeDominio;
 import com.companhia.rns.IStrategy;
+import com.companhia.rns.bagagem.ValidarClienteAtivo;
 import com.companhia.rns.cliente.ValidarCamposObrigatorios;
 
 @Component
@@ -45,6 +46,7 @@ public class Facade implements IFacade {
 		
 		//regras para bagagem
 		List<IStrategy> rnsSalvarBagagem = new ArrayList<>();
+		rnsSalvarBagagem.add(new ValidarClienteAtivo());
 		Map<String, List<IStrategy>> rnsBagagem = new HashMap<>();
 		rnsBagagem.put("SALVAR", rnsSalvarBagagem);
 		

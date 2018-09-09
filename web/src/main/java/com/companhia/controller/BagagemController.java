@@ -2,6 +2,7 @@ package com.companhia.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.companhia.entities.Bagagem;
+import com.companhia.entities.Cliente;
+import com.companhia.entities.EntidadeDominio;
+import com.companhia.web.facade.Resultado;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
@@ -42,6 +46,9 @@ public class BagagemController extends BaseController {
 	@ResponseBody
 	public String salvar(String action, String bagagem) throws JsonParseException, JsonMappingException, IOException {
 		Bagagem entidade  = mapper.readValue(bagagem, Bagagem.class);
+		Resultado resultado = commands.get("CONSULTAR").execute(entidade.getCliente());
+		if(resultado.getEntidades().size() > 0)
+			entidade.setCliente((Cliente)resultado.getEntidades().get(0));
 		return mapper.writeValueAsString(commands.get(action).execute(entidade));
 	}
 }

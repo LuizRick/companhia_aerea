@@ -3,6 +3,8 @@ package com.companhia.entities;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.MapsId;
@@ -18,14 +20,15 @@ public class Cliente extends EntidadeDominio{
 	private String telefone;
 	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private Date nascimento;
+	@Column(unique=true)
 	private String cpf;
 	private String rg;
 	private String email;
 	private String senha;
 	private String celular;
+	private boolean ativo = true;
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	@MapsId
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Endereco endereco;
 
@@ -100,6 +103,14 @@ public class Cliente extends EntidadeDominio{
 
 	public void setCelular(String celular) {
 		this.celular = celular;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean status) {
+		this.ativo = status;
 	}
 
 }

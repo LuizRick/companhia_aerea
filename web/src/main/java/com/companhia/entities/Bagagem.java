@@ -1,5 +1,6 @@
 package com.companhia.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.MapsId;
@@ -19,8 +20,7 @@ public class Bagagem extends EntidadeDominio {
 	private boolean ativo;
 	private String numeroVoo;
 
-	@OneToOne(fetch=FetchType.LAZY)
-	@MapsId
+	@OneToOne
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Cliente cliente;
 

@@ -17,7 +17,7 @@ $(function(){
 		quantidade:$("#txt-quantidade").val(),
 		peso:$("#txt-peso").val().replaceComma(),
 		taxa:$("#txt-taxa").val().replaceComma(),
-		ativo:$("#sel-ativo option:selected").val(),
+		ativo:$("#sel-status").val(),
 		numeroVoo:$("#txt-voo").val(),
 		cliente:{
 		    cpf:$("#txt-cpf").val().getJustNum()
@@ -28,12 +28,14 @@ $(function(){
 		bagagem:JSON.stringify(bagagem)
 	};
 	
-	console.log(bagagem)
-	return;
-	PostRequestAsync("/bagagem/salvar", data , function(){
-	    
+	PostRequestAsync("/bagagem/salvar", data , function(response){
+	    var resultado = JSON.parse(response);
+	    if(resultado.msg != null)
+		alert(resultado.msg);
+	    else
+		alert("Bagagem salva com sucesso");
 	}, function(){
-	    
+	    alert("Não foi possivel salvar a bagagem");
 	});
     });
 });

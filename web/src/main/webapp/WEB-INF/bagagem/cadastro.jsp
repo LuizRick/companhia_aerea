@@ -61,8 +61,8 @@
                                 <div class="form-group col-md-4">
                                     <label for="sel-status">*Status:</label>
                                     <select id="sel-status" class="form-control">
-                                        <option value="1">Ativo</option>
-                                        <option value="2">Inativo</option>
+                                        <option value="true">Ativo</option>
+                                        <option value="false">Inativo</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2">
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <button class="btn btn-primary" id="btnSalvar">Salvar</button>
+                        <button class="btn btn-primary" id="btnSalvar" type="submit">Salvar</button>
                     </form>
                 </div>
             </div>
